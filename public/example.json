@@ -1,0 +1,892 @@
+
+
+{
+  "version": "0.0.0",
+  "title": "入力例サンプル",
+  "description": "〇〇の各サービスのいろいろな見積もりを手軽に算出できます! <br> 登録不要で無料でお使いいただけます。ここはHTML入力可能です。",
+  "terms_html": "<p class=\"h4\">利用規約</p>\n<p>この利用規約（以下，「本規約」といいます。）は，株式会社___________（以下，「当社」といいます。）がこのウェブサイト上で提供するサービス（以下，「本サービス」といいます。）の利用条件を定めるものです。ユーザーの皆さまには，本規約に従って，本サービスをご利用いただきます。</p>\n<br><br>\n<p class=\"h5\">適用</p>\n<p>本規約は，ユーザーと当社との間の本サービスの利用に関わる一切の関係に適用されるものとします。</p>\n<br><br>\n<p class=\"h5\">秘密保持</p>\n<p>当社はメール問い合わせにより知り得たユーザーの技術上または営業上その他業務上の一切の情報を、ユーザーの事前の書面による承諾を得ることなく第三者に開示または漏洩してはならず、問い合わせ応対業務の遂行のためにのみ使用するものとし、他の目的に使用してはならない。</p>\n<p>前項の規定は、次のいずれかに該当する情報については適用しない。<br>\n  (1)開示を受けた際、すでに自己が保有していた情報<br>\n  (1)開示を受けた際、すでに公知となっている情報<br>\n  (3)開示を受けた際、自己の責めによらずに公知となった情報<br>\n  (4)正当な権限を有する第三者から適法に取得した情報<br>\n  (5)ユーザーから開示された情報によることなく独自に開発・取得していた情報<br>\n</p>\n<br><br>\n<p class=\"h5\">禁止事項</p>\n<p>法令または公序良俗に違反する行為</p>\n<p>本サービスの内容等，本サービスに含まれる著作権，商標権ほか知的財産権を侵害する行為</p>\n<p>当社，ほかのユーザー，またはその他第三者のサーバーまたはネットワークの機能を破壊したり，妨害したりする行為</p>\n<p>本サービスによって得られた情報を販売する行為</p>\n<p>その他，当社が不適切と判断する行為</p>\n<br><br>\n<p class=\"h5\">保証の否認および免責事項</p>\n<p>当社は，本サービスに事実上または法律上の瑕疵（安全性，信頼性，正確性，完全性，有効性，特定の目的への適合性，セキュリティなどに関する欠陥，エラーやバグ，権利侵害などを含みます。）がないことを明示的にも黙示的にも保証しておりません。</p>\n<p>当社は，本サービスに起因してユーザーに生じたあらゆる損害について、当社の故意又は重過失による場合を除き、一切の責任を負いません。ただし，本サービスに関する当社とユーザーとの間の契約（本規約を含みます。）が消費者契約法に定める消費者契約となる場合，この免責規定は適用されません。</p>\n<p>当社は，本サービスに関して，ユーザーと他のユーザーまたは第三者との間において生じた取引，連絡または紛争等について一切責任を負いません。</p>\n<br><br>\n<p class=\"h5\">個人情報保護方針（プライバシーポリシー）</p>\n<p>以下をご参照ください。</p>\n<a href=\"https://www.google.co.jp/\" target=\"_blank\" >プライバシーポリシー</a>\n<br><br>\n<p class=\"h5\">準拠法・裁判管轄</p>\n<p>本規約の解釈にあたっては，日本法を準拠法とします。</p>\n<p>本サービスに関して紛争が生じた場合には，当社の本店所在地を管轄する裁判所を専属的合意管轄とします。</p>\n<p>以上</p>",
+  "categories":
+  [
+    {
+      "name": "パソコンサポート",
+      "description": "",
+      "propagation_groups":
+      [
+        {
+          "description": "有線インターネット接続設定を頼んだら、(追加)の項目を選択できる。有線インターネット接続設定を取り止めたら、追加できないし、既に入れていた分は消す。",
+          "propagations":
+          [
+            {
+              "from_id": "a1aff844-9f4f-4520-ac4d-40f593de9809",
+              "to_id": "7ea3f236-1b23-4ce5-b103-35416d84ff5e",
+              "type": "ONE_TO_ABLE"
+            },
+            {
+              "from_id": "a1aff844-9f4f-4520-ac4d-40f593de9809",
+              "to_id": "7ea3f236-1b23-4ce5-b103-35416d84ff5e",
+              "type": "ZERO_TO_DISABLE"
+            },
+            {
+              "from_id": "a1aff844-9f4f-4520-ac4d-40f593de9809",
+              "to_id": "7ea3f236-1b23-4ce5-b103-35416d84ff5e",
+              "type": "ZERO_TO_ZERO"
+            }
+          ]
+        },
+        {
+          "description": "無線インターネット接続設定を頼んだら、(追加)の項目を選択できる。無線インターネット接続設定を取り止めたら、追加できないし、既に入れていた分は消す。",
+          "propagations":
+          [
+            {
+              "from_id": "db7e538d-dc4b-4440-903e-a4f6fa19e302",
+              "to_id": "c2e972cf-0e4c-4336-b504-bb54e921265a",
+              "type": "ONE_TO_ABLE"
+            },
+            {
+              "from_id": "db7e538d-dc4b-4440-903e-a4f6fa19e302",
+              "to_id": "c2e972cf-0e4c-4336-b504-bb54e921265a",
+              "type": "ZERO_TO_DISABLE"
+            },
+            {
+              "from_id": "db7e538d-dc4b-4440-903e-a4f6fa19e302",
+              "to_id": "c2e972cf-0e4c-4336-b504-bb54e921265a",
+              "type": "ZERO_TO_ZERO"
+            }
+          ]
+        },
+        {
+          "description": "通常を選んだら他は選べない。通常を外したら、他のものが選べるようになる。",
+          "propagations":
+          [
+            {
+              "from_id": "93287fdd-a918-4211-83e8-41b8e180bbf7",
+              "to_id": "22ea1a93-35e3-48c8-a1e3-4ae9ab42c68f",
+              "type": "ONE_TO_DISABLE"
+            },
+            {
+              "from_id": "93287fdd-a918-4211-83e8-41b8e180bbf7",
+              "to_id": "b755e3ae-0e47-48e6-809e-cbf402074b04",
+              "type": "ONE_TO_DISABLE"
+            },
+            {
+              "from_id": "93287fdd-a918-4211-83e8-41b8e180bbf7",
+              "to_id": "22ea1a93-35e3-48c8-a1e3-4ae9ab42c68f",
+              "type": "ZERO_TO_ABLE"
+            },
+            {
+              "from_id": "93287fdd-a918-4211-83e8-41b8e180bbf7",
+              "to_id": "b755e3ae-0e47-48e6-809e-cbf402074b04",
+              "type": "ZERO_TO_ABLE"
+            }
+          ]
+        },
+        {
+          "description": "特急を選んだら他は選べない。特急を外したら、他のものが選べるようになる。",
+          "propagations":
+          [
+            {
+              "from_id": "22ea1a93-35e3-48c8-a1e3-4ae9ab42c68f",
+              "to_id": "93287fdd-a918-4211-83e8-41b8e180bbf7",
+              "type": "ONE_TO_DISABLE"
+            },
+            {
+              "from_id": "22ea1a93-35e3-48c8-a1e3-4ae9ab42c68f",
+              "to_id": "b755e3ae-0e47-48e6-809e-cbf402074b04",
+              "type": "ONE_TO_DISABLE"
+            },
+            {
+              "from_id": "22ea1a93-35e3-48c8-a1e3-4ae9ab42c68f",
+              "to_id": "93287fdd-a918-4211-83e8-41b8e180bbf7",
+              "type": "ZERO_TO_ABLE"
+            },
+            {
+              "from_id": "22ea1a93-35e3-48c8-a1e3-4ae9ab42c68f",
+              "to_id": "b755e3ae-0e47-48e6-809e-cbf402074b04",
+              "type": "ZERO_TO_ABLE"
+            }
+          ]
+        },
+        {
+          "description": "緊急・即日を選んだら他は選べない。緊急・即日を外したら、他のものが選べるようになる。",
+          "propagations":
+          [
+            {
+              "from_id": "b755e3ae-0e47-48e6-809e-cbf402074b04",
+              "to_id": "93287fdd-a918-4211-83e8-41b8e180bbf7",
+              "type": "ONE_TO_DISABLE"
+            },
+            {
+              "from_id": "b755e3ae-0e47-48e6-809e-cbf402074b04",
+              "to_id": "22ea1a93-35e3-48c8-a1e3-4ae9ab42c68f",
+              "type": "ONE_TO_DISABLE"
+            },
+            {
+              "from_id": "b755e3ae-0e47-48e6-809e-cbf402074b04",
+              "to_id": "93287fdd-a918-4211-83e8-41b8e180bbf7",
+              "type": "ZERO_TO_ABLE"
+            },
+            {
+              "from_id": "b755e3ae-0e47-48e6-809e-cbf402074b04",
+              "to_id": "22ea1a93-35e3-48c8-a1e3-4ae9ab42c68f",
+              "type": "ZERO_TO_ABLE"
+            }
+          ]
+        },
+        {
+          "description": "〇〇市内を選んだら他は選べない。〇〇市内を外したら、他のものが選べるようになる。",
+          "propagations":
+          [
+            {
+              "from_id": "55dd4635-cf8c-4ee8-8878-1fef35b88b56",
+              "to_id": "63107151-869e-4963-af89-5ea5fa966e2c",
+              "type": "ONE_TO_DISABLE"
+            },
+            {
+              "from_id": "55dd4635-cf8c-4ee8-8878-1fef35b88b56",
+              "to_id": "63107151-869e-4963-af89-5ea5fa966e2c",
+              "type": "ZERO_TO_ABLE"
+            }
+          ]
+        },
+        {
+          "description": "関東近郊を選んだら他は選べない。関東近郊を外したら、他のものが選べるようになる。",
+          "propagations":
+          [
+            {
+              "from_id": "63107151-869e-4963-af89-5ea5fa966e2c",
+              "to_id": "55dd4635-cf8c-4ee8-8878-1fef35b88b56",
+              "type": "ONE_TO_DISABLE"
+            },
+            {
+              "from_id": "63107151-869e-4963-af89-5ea5fa966e2c",
+              "to_id": "55dd4635-cf8c-4ee8-8878-1fef35b88b56",
+              "type": "ZERO_TO_ABLE"
+            }
+          ]
+        }
+      ],
+      "processes":
+      [
+        {
+          "name": "サポートメニュー",
+          "base": true,
+          "items":
+          [
+            {
+              "item_id": "20c2703f-3243-4284-b6af-4a003d60272d",
+              "name": "パソコン設置セットアップ",
+              "is_disabled": false,
+              "is_required": false,
+              "description": "PC新規導入や買い替え時の開梱作業からPC付属の周辺機器取り付けまで行い、パソコンを使える状態に設置設定・初期セットアップを致します",
+              "type": "dynamic",
+              "quantity": 0,
+              "cost": 0,
+              "detail_dynamic": 
+              {
+                "unit_name": "台",
+                "unit_mass": 1,
+                "unit_description": "",
+                "unit_cost": 8000, 
+                "min_quantity": 0,
+                "max_quantity": 10
+              }
+            },
+            {
+              "item_id": "a1aff844-9f4f-4520-ac4d-40f593de9809",
+              "name": "有線インターネット接続設定",
+              "is_disabled": false,
+              "is_required": false,
+              "description": "有線にてパソコン1台までインターネット接続とメールの設定を致します",
+              "type": "static",
+              "quantity": 0,
+              "cost": 0,
+              "detail_static": 
+              {
+                "unit_cost": 9500
+              }
+            },
+            {
+              "item_id": "7ea3f236-1b23-4ce5-b103-35416d84ff5e",
+              "name": "追加インターネット設定(有線)",
+              "is_disabled": true,
+              "is_required": false,
+              "description": "有線での2台目以降のPCのインターネット設定とメールの設定",
+              "type": "dynamic",
+              "quantity": 0,
+              "cost": 0,
+              "detail_dynamic": 
+              {
+                "unit_name": "台",
+                "unit_mass": 1,
+                "unit_description": "",
+                "unit_cost": 6500, 
+                "min_quantity": 0,
+                "max_quantity": 10
+              }
+            },
+            {
+              "item_id": "db7e538d-dc4b-4440-903e-a4f6fa19e302",
+              "name": "無線LAN設定",
+              "is_disabled": false,
+              "is_required": false,
+              "description": "無線ルーターの設定及びパソコン1台まで無線でのインターネット接続設定、メールの設定を致します ",
+              "type": "static",
+              "quantity": 0,
+              "cost": 0,
+              "detail_static": 
+              {
+                "unit_cost": 12500
+              }
+            },
+            {
+              "item_id": "c2e972cf-0e4c-4336-b504-bb54e921265a",
+              "name": "追加インターネット設定(無線)",
+              "is_disabled": true,
+              "is_required": false,
+              "description": "無線での2台目以降のPCのインターネット設定とメールの設定",
+              "type": "dynamic",
+              "quantity": 0,
+              "cost": 0,
+              "detail_dynamic": 
+              {
+                "unit_name": "台",
+                "unit_mass": 1,
+                "unit_description": "",
+                "unit_cost": 8000, 
+                "min_quantity": 0,
+                "max_quantity": 10
+              }
+            },
+            {
+              "item_id": "f91506a4-f3a0-450e-9fd7-d304a4d13d23",
+              "name": "ファイル共有設定",
+              "is_disabled": false,
+              "is_required": false,
+              "description": "2台以上のPCで無線LAN、有線LANにてファイルの共有等をできるように設定致します",
+              "type": "dynamic",
+              "quantity": 0,
+              "cost": 0,
+              "detail_dynamic": 
+              {
+                "unit_name": "台",
+                "unit_mass": 1,
+                "unit_description": "",
+                "unit_cost": 6500, 
+                "min_quantity": 0,
+                "max_quantity": 10
+              }
+            },
+            {
+              "item_id": "feec20f7-d123-469e-b838-90374d119b96",
+              "name": "メモリ増設",
+              "is_disabled": false,
+              "is_required": false,
+              "description": "メモリの増設作業を致します",
+              "type": "dynamic",
+              "quantity": 0,
+              "cost": 0,
+              "detail_dynamic": 
+              {
+                "unit_name": "台",
+                "unit_mass": 1,
+                "unit_description": "(メモリー費用は別途)",
+                "unit_cost": 7000, 
+                "min_quantity": 0,
+                "max_quantity": 10
+              }
+            },
+            {
+              "item_id": "1d7533a0-e798-4344-b712-34988d2cd1ce",
+              "name": "その他作業",
+              "is_disabled": false,
+              "is_required": false,
+              "description": "上記サポートメニューに無い作業",
+              "type": "dynamic",
+              "quantity": 0,
+              "cost": 0,
+              "detail_dynamic": 
+              {
+                "unit_name": "分",
+                "unit_mass": 30,
+                "unit_description": "",
+                "unit_cost": 8000, 
+                "min_quantity": 0,
+                "max_quantity": 10
+              }
+            }
+          ]
+        },
+        {
+          "name": "日時",
+          "base": true,
+          "items":
+          [
+            {
+              "item_id": "93287fdd-a918-4211-83e8-41b8e180bbf7",
+              "name": "通常",
+              "is_disabled": false,
+              "is_required": false,
+              "description": "お問合せいただいた日から数え、4日~10日以内の弊社営業時間内(10:00~18:00)にお伺いし対応いたします。",
+              "type": "static",
+              "quantity": 0,
+              "cost": 0,
+              "detail_static": 
+              {
+                "unit_cost": 0
+              }
+            },
+            {
+              "item_id": "22ea1a93-35e3-48c8-a1e3-4ae9ab42c68f",
+              "name": "特急",
+              "is_disabled": false,
+              "is_required": false,
+              "description": "お問合せいただいた日から数え、3日以内のご対応をご希望の場合はこちらを選択してください。",
+              "type": "static",
+              "quantity": 0,
+              "cost": 0,
+              "detail_static": 
+              {
+                "unit_cost": 3800
+              }
+            },
+            {
+              "item_id": "b755e3ae-0e47-48e6-809e-cbf402074b04",
+              "name": "緊急・即日",
+              "is_disabled": false,
+              "is_required": false,
+              "description": "お問合せ日にご対応をご希望の場合はこちらを選択してください。",
+              "type": "static",
+              "quantity": 0,
+              "cost": 0,
+              "detail_static": 
+              {
+                "unit_cost": 5600
+              }
+            }
+          ]
+        },
+        {
+          "name": "出張費",
+          "base": true,
+          "items":
+          [
+            {
+              "item_id": "55dd4635-cf8c-4ee8-8878-1fef35b88b56",
+              "name": "〇〇市内",
+              "is_disabled": false,
+              "is_required": false,
+              "description": "弊社近郊への出張費",
+              "type": "static",
+              "quantity": 0,
+              "cost": 0,
+              "detail_static": 
+              {
+                "unit_cost": 0
+              }
+            },
+            {
+              "item_id": "63107151-869e-4963-af89-5ea5fa966e2c",
+              "name": "関東近郊",
+              "is_disabled": false,
+              "is_required": false,
+              "description": "〇〇市外の東京都・神奈川県・埼玉県・千葉県への出張費",
+              "type": "static",
+              "quantity": 0,
+              "cost": 0,
+              "detail_static": 
+              {
+                "unit_cost": 5000
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "ホームページ構築",
+      "description": "",
+      "propagation_groups":
+      [
+        {
+          "description": "ホームページ・Webサイトコーディングを頼んだら、追加ページ(n)とEC導入プラン(1)とブログ導入(1)を選択できる。ホームページ・Webサイトコーディングを取り止めたら、それぞれを追加できないし、既に入れていた分は消す。また、EC導入プラン(1)とブログ導入(1)のそれぞれのオプションも消す。",
+          "propagations":
+          [
+            {
+              "from_id": "708f1758-b0bc-4ac6-bce7-2134ea310b1f",
+              "to_id": "813fe71b-7117-4d66-9c91-c860f49f3469",
+              "type": "ONE_TO_ABLE"
+            },
+            {
+              "from_id": "708f1758-b0bc-4ac6-bce7-2134ea310b1f",
+              "to_id": "813fe71b-7117-4d66-9c91-c860f49f3469",
+              "type": "ZERO_TO_DISABLE"
+            },
+            {
+              "from_id": "708f1758-b0bc-4ac6-bce7-2134ea310b1f",
+              "to_id": "813fe71b-7117-4d66-9c91-c860f49f3469",
+              "type": "ZERO_TO_ZERO"
+            },
+            {
+              "from_id": "708f1758-b0bc-4ac6-bce7-2134ea310b1f",
+              "to_id": "f2135824-f2c3-4e0b-99c9-e5a6709ec511",
+              "type": "ONE_TO_ABLE"
+            },
+            {
+              "from_id": "708f1758-b0bc-4ac6-bce7-2134ea310b1f",
+              "to_id": "f2135824-f2c3-4e0b-99c9-e5a6709ec511",
+              "type": "ZERO_TO_DISABLE"
+            },
+            {
+              "from_id": "708f1758-b0bc-4ac6-bce7-2134ea310b1f",
+              "to_id": "f2135824-f2c3-4e0b-99c9-e5a6709ec511",
+              "type": "ZERO_TO_ZERO"
+            },
+            {
+              "from_id": "708f1758-b0bc-4ac6-bce7-2134ea310b1f",
+              "to_id": "1c9e3ff1-20e6-4b0d-a538-9826de56b072",
+              "type": "ONE_TO_ABLE"
+            },
+            {
+              "from_id": "708f1758-b0bc-4ac6-bce7-2134ea310b1f",
+              "to_id": "1c9e3ff1-20e6-4b0d-a538-9826de56b072",
+              "type": "ZERO_TO_DISABLE"
+            },
+            {
+              "from_id": "708f1758-b0bc-4ac6-bce7-2134ea310b1f",
+              "to_id": "1c9e3ff1-20e6-4b0d-a538-9826de56b072",
+              "type": "ZERO_TO_ZERO"
+            },
+            {
+              "from_id": "708f1758-b0bc-4ac6-bce7-2134ea310b1f",
+              "to_id": "4051bab9-2ab6-4408-b21f-3f25414a0571",
+              "type": "ZERO_TO_ZERO"
+            },
+            {
+              "from_id": "708f1758-b0bc-4ac6-bce7-2134ea310b1f",
+              "to_id": "4051bab9-2ab6-4408-b21f-3f25414a0571",
+              "type": "ZERO_TO_DISABLE"
+            },
+            {
+              "from_id": "708f1758-b0bc-4ac6-bce7-2134ea310b1f",
+              "to_id": "fd9f6ae9-ff8e-453c-af05-08a457612cf0",
+              "type": "ZERO_TO_ZERO"
+            },
+            {
+              "from_id": "708f1758-b0bc-4ac6-bce7-2134ea310b1f",
+              "to_id": "fd9f6ae9-ff8e-453c-af05-08a457612cf0",
+              "type": "ZERO_TO_DISABLE"
+            }
+          ]
+        },
+        {
+          "description": "EC導入プラン(1)を頼んだら、そのオプションを選択できる。EC導入プラン(1)を取り止めたら、オプションを追加できないし、既に入れていた分は消す。",
+          "propagations":
+          [
+            {
+              "from_id": "f2135824-f2c3-4e0b-99c9-e5a6709ec511",
+              "to_id": "4051bab9-2ab6-4408-b21f-3f25414a0571",
+              "type": "ONE_TO_ABLE"
+            },
+            {
+              "from_id": "f2135824-f2c3-4e0b-99c9-e5a6709ec511",
+              "to_id": "4051bab9-2ab6-4408-b21f-3f25414a0571",
+              "type": "ZERO_TO_DISABLE"
+            },
+            {
+              "from_id": "f2135824-f2c3-4e0b-99c9-e5a6709ec511",
+              "to_id": "4051bab9-2ab6-4408-b21f-3f25414a0571",
+              "type": "ZERO_TO_ZERO"
+            },
+            {
+              "from_id": "f2135824-f2c3-4e0b-99c9-e5a6709ec511",
+              "to_id": "fd9f6ae9-ff8e-453c-af05-08a457612cf0",
+              "type": "ONE_TO_ABLE"
+            },
+            {
+              "from_id": "f2135824-f2c3-4e0b-99c9-e5a6709ec511",
+              "to_id": "fd9f6ae9-ff8e-453c-af05-08a457612cf0",
+              "type": "ZERO_TO_DISABLE"
+            },
+            {
+              "from_id": "f2135824-f2c3-4e0b-99c9-e5a6709ec511",
+              "to_id": "fd9f6ae9-ff8e-453c-af05-08a457612cf0",
+              "type": "ZERO_TO_ZERO"
+            }
+          ]
+        }
+      ],
+      "processes":
+      [
+        {
+          "name": "デザイン",
+          "base": false,
+          "items":
+          [
+            {
+              "item_id": "adaf911d-17e8-4dd1-9acb-0f59e0fe9e66",
+              "name": "ホームページデザイン",
+              "is_disabled": false,
+              "is_required": false,
+              "description": "Topページ、枠組みのデザイン 及びパーツデザイン等の静的なデザインを行います。ご用意いただける場合は不要です。",
+              "type": "static",
+              "quantity": 0,
+              "cost": 0,
+              "detail_static": 
+              {
+                "unit_cost": 150000
+              }
+            },
+            {
+              "item_id": "7667cfd2-6d47-43bd-ba10-9efa9c4a9fa9",
+              "name": "ロゴデザイン",
+              "is_disabled": false,
+              "is_required": false,
+              "description": "お客様のイメージに沿ってホームページ・Webサイト用のロゴデザインを作成します。",
+              "type": "static",
+              "quantity": 0,
+              "cost": 0,
+              "detail_static": 
+              {
+                "unit_cost": 10000
+              }
+            }
+          ]
+        },
+        {
+          "name": "開発",
+          "base": true,
+          "items":
+          [
+            {
+              "item_id": "96740643-0285-4505-a740-7d698ebc3d10",
+              "name": "基本料金",
+              "is_disabled": false,
+              "is_required": true,
+              "description": "言語・フレームワーク・ライブラリ選定、プロジェクト作成・CI/CD構築、ソース管理を含みます。",
+              "type": "static",
+              "quantity": 1,
+              "cost": 50000,
+              "detail_static": 
+              {
+                "unit_cost": 50000
+              }
+            },
+            {
+              "item_id": "708f1758-b0bc-4ac6-bce7-2134ea310b1f",
+              "name": "ホームページ・Webサイトコーディング",
+              "is_disabled": false,
+              "is_required": false,
+              "description": "お作りしたホームページ・Webサイトデザイン、もしくは持ち込みホームページ・Webサイトデザインに沿ってコーディングします。配下ページは5ページまで料金に含みます。お問合せフォームは1つまで料金に含みます。",
+              "type": "static",
+              "quantity": 0,
+              "cost": 0,
+              "detail_static":
+              {
+                "unit_cost": 100000
+              }
+            },
+            {
+              "item_id": "813fe71b-7117-4d66-9c91-c860f49f3469",
+              "name": "追加ページコーディング",
+              "is_disabled": true,
+              "is_required": false,
+              "description": "お作りしたホームページ・Webサイトデザイン、もしくは持ち込みホームページ・Webサイトデザインに沿ってコーディングします。",
+              "type": "dynamic",
+              "quantity": 0,
+              "cost": 0,
+              "detail_dynamic": 
+              {
+                "unit_name": "ページ",
+                "unit_mass": 1,
+                "unit_description": "(例: 会社説明、求人ページ、お知らせ一覧、お知らせ詳細、あいさつ)",
+                "unit_cost": 10000,
+                "min_quantity": 0,
+                "max_quantity": 20
+              }
+            },
+            {
+              "item_id": "f2135824-f2c3-4e0b-99c9-e5a6709ec511",
+              "name": "+ EC導入プラン(Shopify)",
+              "is_disabled": true,
+              "is_required": false,
+              "description": "お客様の商品をネット上で販売するためのシステムを導入します。 プラン内容: 5点までの商品登録、配送設定、送料設定、在庫設定、決済設定補助、1カテゴリーまでの記事投稿準備(お知らせ、ブログ、事例等)、メンバー管理補助、SEO設定",
+              "type": "static",
+              "quantity": 0,
+              "cost": 0,
+              "detail_static": 
+              {
+                "unit_cost": 120000
+              }
+            },
+            {
+              "item_id": "4051bab9-2ab6-4408-b21f-3f25414a0571",
+              "name": "EC導入プラン 追加商品",
+              "is_disabled": true,
+              "is_required": false,
+              "description": "商品登録を追加します。",
+              "type": "dynamic",
+              "quantity": 0,
+              "cost": 0,
+              "detail_dynamic": 
+              {
+                "unit_name": "個",
+                "unit_mass": 1,
+                "unit_description": "",
+                "unit_cost": 10000,
+                "min_quantity": 0,
+                "max_quantity": 50
+              }
+            },
+            {
+              "item_id": "fd9f6ae9-ff8e-453c-af05-08a457612cf0",
+              "name": "EC導入プラン 多言語対応",
+              "is_disabled": true,
+              "is_required": false,
+              "description": "shopifyの多言語対応を行います。定型文以外はお客様に指定言語を用意していただきます。セット内容: 販売拠点設定、各ページの多言語化、言語切り替え・決済通過切り替え",
+              "type": "dynamic",
+              "quantity": 0,
+              "cost": 0,
+              "detail_dynamic": 
+              {
+                "unit_name": "カ国",
+                "unit_mass": 1,
+                "unit_description": "",
+                "unit_cost": 75000,
+                "min_quantity": 0,
+                "max_quantity": 5
+              }
+            },
+            {
+              "item_id": "1c9e3ff1-20e6-4b0d-a538-9826de56b072",
+              "name": "+ ブログ導入プラン(Wordpress)",
+              "is_disabled": true,
+              "is_required": false,
+              "description": "ブログやお知らせなど、お客様自身で更新できるコンテンツの管理システムを導入します。プラン内容: 管理画面設定、データベース設定、3カテゴリーまでの記事投稿準備(お知らせ、ブログ、事例等)、メンバー管理補助、SEO設定",
+              "type": "static",
+              "quantity": 0,
+              "cost": 0,
+              "detail_static": 
+              {
+                "unit_cost": 50000
+              }
+            },
+            {
+              "item_id": "29b1b4ff-28e1-40ce-8f85-4082df8a34eb",
+              "name": "追加プログラム",
+              "is_disabled": false,
+              "is_required": false,
+              "description": "スライドショーや計算フォーム、お問合せ・求人フォームなどの追加プログラムをWebサイトに差し込みます。",
+              "type": "dynamic",
+              "quantity": 0,
+              "cost": 0,
+              "detail_dynamic": 
+              {
+                "unit_name": "個",
+                "unit_mass": 1,
+                "unit_description": "(例: スライドショー, 計算フォーム, フェードアニメーション、視差背景、お知らせリスト、カレンダー、アンケートフォーム)",
+                "unit_cost": 15000, 
+                "min_quantity": 0,
+                "max_quantity": 10
+              }
+            },
+            {
+              "item_id": "a049f1e6-2705-42c9-8c39-475a1f2f2869",
+              "name": "SNS連携",
+              "is_disabled": false,
+              "is_required": false,
+              "description": "リンクや投稿の埋め込みなどを行います。",
+              "type": "dynamic",
+              "quantity": 0,
+              "cost": 0,
+              "detail_dynamic": 
+              {
+                "unit_name": "個",
+                "unit_mass": 1,
+                "unit_description": "(例: instagram, facebook, twitter, line)",
+                "unit_cost": 15000, 
+                "min_quantity": 0,
+                "max_quantity": 7
+              }
+            },
+            {
+              "item_id": "30198c49-1cd1-4257-8fe9-81083e85f837",
+              "name": "簡易SEOセット",
+              "is_disabled": false,
+              "is_required": false,
+              "description": "セット内容: 各種メタタグの設定、sitemap.xmlの作成、その他金額内のSEO努力を行います。",
+              "type": "static",
+              "quantity": 0,
+              "cost": 0,
+              "detail_static": 
+              {
+                "unit_cost": 10000
+              }
+            }
+          ]
+        },
+        {
+          "name": "要件定義",
+          "base": false,
+          "items":
+          [
+            {
+              "item_id": "47757790-4e77-48c5-b0bb-4bdfdafee09e",
+              "name": "事前調査",
+              "is_disabled": false,
+              "is_required": false,
+              "description": "お客様の業界で好まれる配色、パターン、デザイン、参考サイトを初回打ち合わせ前に調査いたします。イメージが固まっている場合は不要です。",
+              "type": "static",
+              "quantity": 0,
+              "cost": 0,
+              "detail_static": 
+              {
+                "unit_cost": 15000
+              }
+            },
+            {
+              "item_id": "c3042cbd-1245-4514-92cd-5d13a9146766",
+              "name": "打ち合わせ",
+              "is_disabled": false,
+              "is_required": false,
+              "description": "お客様のイメージをヒアリングさせていただき、明文化させていただきます。イメージが固まっている場合は不要です。数回の対面MTGおよびテキストでのやり取りを想定しています。",
+              "type": "static",
+              "quantity": 0,
+              "cost": 0,
+              "detail_static": 
+              {
+                "unit_cost": 20000
+              }
+            },
+            {
+              "item_id": "0d8a264c-003e-4794-abbe-96636ea6e269",
+              "name": "データ移行",
+              "is_disabled": false,
+              "is_required": false,
+              "description": "既存システムからのデータ移行とその設計を行います。",
+              "type": "static",
+              "quantity": 0,
+              "cost": 0,
+              "detail_static": 
+              {
+                "unit_cost": 100000
+              }
+            },
+            {
+              "item_id": "d80c7d1d-d216-4bc2-ba77-9ca74b47c999",
+              "name": "商品データ移行",
+              "is_disabled": false,
+              "is_required": false,
+              "description": "既存ECシステムからのデータ移行とその設計を行います。",
+              "type": "static",
+              "quantity": 0,
+              "cost": 0,
+              "detail_static": 
+              {
+                "unit_cost": 150000
+              }
+            }
+          ]
+        },
+        {
+          "name": "テスト・公開",
+          "base": false,
+          "items":
+          [
+            {
+              "item_id": "0f0560ce-843d-4e02-8b34-2d0ea83f2061",
+              "name": "動作確認・見栄え確認",
+              "is_disabled": false,
+              "is_required": false,
+              "description": "プログラムの動作と見栄えのチェック、誤字脱字、コードのエラー・ワーニング、動作速度に関してチェックを行います。",
+              "type": "dependence",
+              "quantity": 0,
+              "cost": 0,
+              "detail_dependence": { 
+                "coefficient": 0.1
+              }
+            },
+            {
+              "item_id": "adac90ba-fc9b-4ac3-85f1-d9ae052bb663",
+              "name": "リテイク追加",
+              "is_disabled": false,
+              "is_required": false,
+              "description": "ホームページ・Webサイトのデザイン・コーディング面に関してのリテイクを追加します。お客様の担当者以外のチェックが入る場合はあらかじめご注文してください。",
+              "type": "dynamic",
+              "quantity": 0,
+              "cost": 0,
+              "detail_dynamic": 
+              {
+                "unit_name": "回",
+                "unit_mass": 1,
+                "unit_description": "(例: 色変更、フォント変更、画像差し替えなどをまとめて承り、１回とカウントします。)",
+                "unit_cost": 20000, 
+                "min_quantity": 0,
+                "max_quantity": 10
+              }
+            },
+            {
+              "item_id": "7e249a24-ebc7-4f87-b1c5-d77bd37e430c",
+              "name": "簡易サーバー構築セット",
+              "is_disabled": false,
+              "is_required": false,
+              "description": "セット内容: レンタルサーバの設定、ドメイン・DNSの設定、ホームページ・Webサイトのデプロイ、一時的なアクセス制限、無料SSL(https)設定",
+              "type": "static",
+              "quantity": 0,
+              "cost": 0,
+              "detail_static": 
+              {
+                "unit_cost": 15000
+              }
+            }
+          ]
+        },
+        {
+          "name": "フォロー",
+          "base": false,
+          "items":
+          [
+            {
+              "item_id": "68599fa9-ce11-4f93-a3dd-62d53b495ba8",
+              "name": "保守(年間)",
+              "is_disabled": false,
+              "is_required": false,
+              "description": "ソースコード・ドキュメントの管理、システムアラートの調査、不具合調査、死活監視、ログ管理を行います。契約不適合ではない不具合の調査を行います。",
+              "type": "dependence",
+              "quantity": 0,
+              "cost": 0,
+              "detail_dependence": { 
+                "coefficient": 0.12
+              }
+            },
+            {
+              "item_id": "d12fa53e-6411-4443-8d93-4ad5b9c3214e",
+              "name": "運用(年間)",
+              "is_disabled": false,
+              "is_required": false,
+              "description": "システムのシステム管理者を行います。運用する上で基幹となるデータの登録を行います。マニュアルのブラッシュアップを行います。",
+              "type": "dependence",
+              "quantity": 0,
+              "cost": 0,
+              "detail_dependence": { 
+                "coefficient": 0.08
+              }
+            },
+            {
+              "item_id": "b79bf91b-b11b-4bbd-9fef-85228fda84ee",
+              "name": "問い合わせ対応(年間)",
+              "is_disabled": false,
+              "is_required": false,
+              "description": "システムおよびマニュアルについての営業時間内の問い合わせ対応を行います。",
+              "type": "dependence",
+              "quantity": 0,
+              "cost": 0,
+              "detail_dependence": { 
+                "coefficient": 0.05
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

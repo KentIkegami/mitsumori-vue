@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+  <html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="https://unpkg.com/mitsumori-vue/dist/style.css">
+    <title>mitsumori-vue-app</title>
+  </head>
+  <body>
+    <div id="mitsumori-vue-app"></div>
+  </body>
+  
+  <script type="importmap">
+    {
+      "imports": {
+        "vue": "https://unpkg.com/vue@next/dist/vue.esm-browser.js",
+        "mitsumori-vue": "https://unpkg.com/mitsumori-vue/dist/mitsumori-vue.es.js"
+      }
+    }
+  </script>
+  <script type="module">
+  import { createApp } from 'vue';
+  import { MitsumoriVue } from 'mitsumori-vue';
+  
+  const SETTINGS = {
+    url: "https://unpkg.com/mitsumori-vue/dist/example.json"
+  }
+  
+  createApp(MitsumoriVue, SETTINGS).mount('#mitsumori-vue-app')
+
+  </script>
+</html>

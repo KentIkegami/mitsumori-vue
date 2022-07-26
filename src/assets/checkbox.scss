@@ -1,0 +1,51 @@
+.mv-checkbox {
+  display: block;
+  width: 0rem;
+  position: relative;
+  color: rgba(0, 0, 0, 0.7);
+  cursor: pointer;
+  user-select: none; /* テキストが選択されてしまうのを防ぐ */
+  /* inputは非表示にする */
+  input {
+    display: none;
+  }
+}
+
+/* □ */
+.mv-checkmark {
+  position: absolute;
+  top: 0; /* 上からの位置 */
+  left: 0;
+  height: 2rem; /* 幅 */
+  width: 2rem; /* 幅 */
+  border: solid 2px #d4dae2; /* 線 */
+  border-radius: 2px;
+  box-sizing: border-box;
+  background: white;
+  /* ✓ */
+  &:after {
+    content: "";
+    position: absolute;
+    border: solid #FFF;
+    border-width: 0 3px 3px 0;
+    left: 0.5rem;
+    top: 0.1rem;
+    width: 0.8rem;
+    height: 1.2rem;
+    transform: rotate(45deg);
+    opacity: 0; /* 透明にしておく */
+  }
+}
+
+/* チェックが入ったとき */
+.mv-checkbox {
+  /* □ */
+  input:checked + .mv-checkmark {
+    background: #2e80ff; /* チェック時の色 */
+    border-color: #2e80ff; /* チェック時の色 */
+  }
+  /* ✓ */
+  input:checked + .mv-checkmark:after {
+    opacity: 1;
+  }
+}

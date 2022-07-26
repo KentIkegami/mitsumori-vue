@@ -1,0 +1,78 @@
+
+
+.mv-item-input-range[type="range"] { 
+  margin: auto;
+  -webkit-appearance: none;
+  position: relative;
+  overflow: hidden;
+  height: 2rem;
+  width: 100%;
+  cursor: pointer;
+  border-radius: 0; /* iOS */
+}
+
+.mv-item-input-range::-webkit-slider-runnable-track {
+  background: #ddd;
+}
+
+/*
+* 1. Set to 0 width and remove border for a slider without a thumb
+* 2. Shadow is negative the full width of the input and has a spread 
+*    of the width of the input.
+*/
+.mv-item-input-range::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 20px; /* 1 */
+  height: 2rem;
+  background: #fff;
+  --box-shadow-color: dodgerblue;
+  box-shadow: -2000px 0 0 2000px var(--box-shadow-color); /* 2 */
+  border: 2px solid #999; /* 1 */
+}
+
+.mv-item-input-range::-moz-range-track {
+  height: 2rem;
+  background: #ddd;
+}
+
+.mv-item-input-range::-moz-range-thumb {
+  background: #fff;
+  height: 2rem;
+  width: 20px;
+  border: 3px solid #999;
+  border-radius: 0 !important;
+  --box-shadow-color: dodgerblue;
+  box-shadow: -2000px 0 0 2000px var(--box-shadow-color);
+  box-sizing: border-box;
+}
+
+.mv-item-input-range::-ms-fill-lower { 
+  background: dodgerblue;
+}
+
+.mv-item-input-range::-ms-thumb { 
+  background: #fff;
+  border: 2px solid #999;
+  height: 2rem;
+  width: 20px;
+  box-sizing: border-box;
+}
+
+.mv-item-input-range::-ms-ticks-after { 
+  display: none; 
+}
+
+.mv-item-input-range::-ms-ticks-before { 
+  display: none; 
+}
+
+.mv-item-input-range::-ms-track { 
+  background: #ddd;
+  color: transparent;
+  height: 2rem;
+  border: none;
+}
+
+.mv-item-input-range::-ms-tooltip { 
+  display: none;
+}
