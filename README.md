@@ -56,7 +56,7 @@ createApp(MitsumoriVue, SETTINGS).mount('#mitsumori-vue-app')
   <body>
     <div id="mitsumori-vue-app"></div>
   </body>
-  
+  <script async src="https://unpkg.com/es-module-shims@1.3.6/dist/es-module-shims.js"></script>
   <script type="importmap">
     {
       "imports": {
