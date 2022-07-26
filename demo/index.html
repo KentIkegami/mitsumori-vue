@@ -23,9 +23,36 @@
   import { MitsumoriVue } from 'mitsumori-vue';
   
   const SETTINGS = {
-    url: "https://unpkg.com/mitsumori-vue/dist/example.json"
+    url: 'https://unpkg.com/mitsumori-vue/dist/example.json',
+    initCategoryIndex: 0,
+    initProcessIndex: 0,
+    debug: true,
+    useLoading: true,
+    useTerms: true,
+    useTermsConfirmationCheck: true,
+    useEmailEstimate: true,
+    usePdfEstimate: true,
+    usePdfEstimateMetaField: true,
+    categorySelectTitle: '見積もりの種類',
+    ownerCompanyName: '株式会社〇〇',
+    ownerCompanyAddress: '東京都丸々市1-1-1',
+    ownerEmail: 'mitsumori@example.com',
+    prosessColors: [
+      '#fe7d7d',
+      '#fd9f68',
+      '#fdb64f',
+      '#ffc037',
+      '#ffd137',
+      '#ffe237',
+      '#fff11e',
+      '#fbff38',
+      '#eaff38',
+      '#d9ff38'
+    ],
+    partsColor: '#FFC338',
+    itemBackColor: '#FFFFC2'
   }
-  
+
   createApp(MitsumoriVue, SETTINGS).mount('#mitsumori-vue-app')
 
   </script>
