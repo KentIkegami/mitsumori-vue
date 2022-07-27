@@ -24,6 +24,7 @@ import type { OwnerSetting } from './types/OwnerSetting';
 import type { UserInput } from './types/UserInput';
 import type {PropagationGroup } from './types/PropagationGroup';
 import type {Propagation } from './types/Propagation';
+import type { SumTargetItemQuantity } from './types/SumTargetItemQuantity'
 
 import CalcHelper from './helpers/calcHelper';
 const { money } = CalcHelper();
@@ -142,6 +143,7 @@ const viewState = ref<ViewState>({
   isShowPrintContent: false,
   isLoading: false,
   isCheckedTerms: false,
+  isUseSumTargetItemQuantity: false,
 });
 
 const userSelection = ref<UserSelection>({
@@ -234,6 +236,7 @@ const getJson = (): void => {
           userSelection.value.processIndex = props.initProcessIndex
         }
       }
+      initExtraLogic()
       setTimeout(() => {
         viewState.value.isLoading = false
       }, 1000)
@@ -247,6 +250,34 @@ const getJson = (): void => {
 };
 
 getJson()
+
+
+const initExtraLogic = (): void =>{
+  log(['initExtraLogic'])
+  if((userSelection.value.category)&&(userSelection.value.category.extra_logic)){
+    if(userSelection.value.category.extra_logic.sum_target_item_quantity){
+      viewState.value.isUseSumTargetItemQuantity = true;
+    }
+  }
+}
+
+
+const sumTargetItemQuantityComputed = computed((): string => {
+  let text = '';
+  if((userSelection.value.category)&&(userSelection.value.category.extra_logic)){
+    if(userSelection.value.category.extra_logic.sum_target_item_quantity){
+      const ids = userSelection.value.category.extra_logic.sum_target_item_quantity.target_item_ids;
+      let sum: number = 0;
+      itemByIds(ids).forEach((item) =>{
+        sum += item.quantity;
+      })
+      text += userSelection.value.category.extra_logic.sum_target_item_quantity.prefix;
+      text += String(sum);
+      text += userSelection.value.category.extra_logic.sum_target_item_quantity.suffix;
+    }
+  }
+  return text;
+});
 
 /**
  * カテゴリーの選択時に発火する
@@ -410,6 +441,19 @@ const itemById = (item_id: string): Item | null => {
   return target
 };
 
+const itemByIds = (item_ids: string[]): Item[] => {
+  var targets: Item[] = []
+  if(userSelection.value.category){
+    item_ids.forEach((item_id) => {
+      const item = itemById(item_id);
+      if (item){
+        targets.push(item);
+      }
+    });
+  }
+  return targets
+};
+
 const onClickOpenMail = (): void => {
   const url = mailToComputed.value;
   window.open(url, '_blank');
@@ -545,6 +589,7 @@ const mailToComputed = computed((): string => {
         @onClickProcessParent = "onClickProcess"
         />
         <div class="mv-sticky-items-wrapper">
+          <div v-show="viewState.isUseSumTargetItemQuantity"> {{ sumTargetItemQuantityComputed }}</div>
           <div class="mv-space"></div>
           <TotalAmountOneLine :allCostComputed="allCostComputed" />
         </div>

@@ -143,6 +143,10 @@ propsの設定値については[こちら](#props)を参照してください�
     {
       "name": "String",
       "description": "String",
+      "extra_logic":
+      {
+
+      },
       "propagation_groups":
       [
         {
@@ -235,7 +239,8 @@ propsの設定値については[こちら](#props)を参照してください�
       "name": "パソコンサポート",
       "description": "",
       "propagation_groups":[],
-      "processes": []
+      "processes": [],
+      "extra_logic": {}
     }
   ]
 }
@@ -252,6 +257,7 @@ Category配列の順番が、画面表示時の順番になります。
 |description| カテゴリーの端的な説明　※表示していません。 |false|String| |
 |propagation_groups| 伝播グループの配列 |false|[PropagationGroup]| |
 |processes| プロセスの配列 |true|[Process]| |
+|extra_logic| 追加ロジック |false|| |
 
 ### プロセスの詳細
 
@@ -471,6 +477,64 @@ Item配列の順番が、画面表示時の順番になります。
 |ZERO_TO_ABLE|Aが0になった時、Bを編集可にする|
 |ONE_TO_DISABLE|Aが1になった時、Bを編集不可にする|
 |ONE_TO_ABLE|Aが1になった時、Bを編集可にする|
+
+
+
+
+### エクストラロジック
+
+特定の業界、商慣習でのみ活用できる機能を追加していく。
+
+#### Json
+
+```json
+{
+  "categories":
+  [
+    {
+      "extra_logic":
+      {
+        "sum_target_item_quantity": "SumTargetItemQuantity"
+      }
+    }
+  ]
+}
+```
+
+|Key|Description|Required|Type|Use html|
+|-----|-----------|--------|----|:-:|
+|sum_target_item_quantity| 特定のアイテムの数の合算を画面上部に出すための設定 |false|SumTargetItemQuantity| |
+
+
+#### SumTargetItemQuantity
+
+```json
+{
+  "categories":
+  [
+    {
+      "extra_logic":
+      {
+        "sum_target_item_quantity": 
+        {
+          "prefix": "パソコン", 
+          "suffix": "台", 
+          "target_item_ids":["20c2703f-3243-4284-b6af-4a003d60272d"]
+        }
+      }
+    }
+  ]
+}
+
+```
+
+|Key|Description|Required|Type|Use html|
+|-----|-----------|--------|----|:-:|
+|prefix| 接頭辞 |false|String| |
+|suffix| 接尾辞 |false|String| |
+|target_item_ids| 合算対象のアイテム |false|[String]| |
+
+
 
 
 

@@ -10,4 +10,5 @@ export type ViewState = {
   isShowPrintContent: boolean;
   isLoading: boolean;
   isCheckedTerms: boolean;
+  isUseSumTargetItemQuantity: boolean;
 }

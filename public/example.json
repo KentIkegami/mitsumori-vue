@@ -10,6 +10,15 @@
     {
       "name": "パソコンサポート",
       "description": "",
+      "extra_logic":
+      {
+        "sum_target_item_quantity": 
+        {
+          "prefix": "パソコン", 
+          "suffix": "台", 
+          "target_item_ids":["20c2703f-3243-4284-b6af-4a003d60272d"]
+        }
+      },
       "propagation_groups":
       [
         {
