@@ -73,6 +73,7 @@ const selectedColor = ():string => {
 .mv-processes-wrapper-sp{
   display: none;
   margin-top: 0.5rem;
+  padding-top: 0.2rem;
   padding-bottom: 0.5rem;
   overflow-x: auto;
   white-space: nowrap;
