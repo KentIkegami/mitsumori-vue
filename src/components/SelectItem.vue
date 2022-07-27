@@ -71,6 +71,9 @@ const onChangeCheckChild = (e: Event, item_id: string): void => {
       <div class="mv-item-cost-wrapper" >
         <input class="mv-item-cost mv-cost-display" type="text" :value="'¥ '+money(item.cost)" readonly>
       </div>
+      <div class="mv-item-unit-description" v-if="item.type === 'dynamic'">
+        <p>{{ item.detail_dynamic!.unit_description }}</p>
+      </div>
     </div>
 
   </div>
@@ -131,12 +134,23 @@ const onChangeCheckChild = (e: Event, item_id: string): void => {
   display: grid;
   grid-template:
     "item1 ... item2 ... item3" auto
+    "ud ud  ud  ud    ud" auto
     / 4fr 10px 1fr 10px 2fr;
 }
+.mv-item-unit-description{
+  grid-area: ud;
+  font-size: 0.7rem;
+  color: rgb(39, 39, 39);
+  font-weight: 100;
+  text-align: end;
+}
+
+
 @media (max-width: 500px) {
   .mv-item-input-cost-wrapper{
     grid-template:
     "item1 ... item2 ... item3" auto
+    "ud ud  ud  ud    ud" auto
     / 4fr 5px 2.5fr 5px 3fr;
   }
   .mv-item-quantity{

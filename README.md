@@ -377,7 +377,7 @@ Item配列の順番が、画面表示時の順番になります。
 |-----|-----------|--------|----|:-:|
 |unit_name| 単位名 |true|String| |
 |unit_mass| 注文単位 例えば本の出版など、100部ずつ発注させたい場合は、100を設定します。 |true|Number| |
-|unit_description| 単位の説明 ※今の所不使用　のちに実装予定 |true|String| |
+|unit_description| 単位の説明 |true|String| |
 |unit_cost| 単価 |true|Number| |
 |min_quantity| 発注数の最小数。0を設定してください。0以外は未対応。 |true|Number| |
 |max_quantity| 発注数の最大数。 |true|Number| |

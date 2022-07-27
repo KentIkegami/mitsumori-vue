@@ -185,7 +185,7 @@
               {
                 "unit_name": "台",
                 "unit_mass": 1,
-                "unit_description": "",
+                "unit_description": "※ここに単位の説明や変動幅の説明などを加えることができます。",
                 "unit_cost": 8000, 
                 "min_quantity": 0,
                 "max_quantity": 10
