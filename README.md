@@ -346,7 +346,7 @@ Item配列の順番が、画面表示時の順番になります。
 |name| 項目名 |true|String| |
 |is_disabled| 初期状態で編集不可かどうかを設定します。ユーザーの操作で変動する項目。 |true|Boolean| |
 |is_required| 必須項目設定　赤字で必須であるメッセージがでます。今の所、制御では使っていません。飾りです。 |true|Boolean| |
-|description| 説明 あとでhtml化にする予定。 |true|String| |
+|description| 説明 |true|String|○|
 |type| static/dynamic/dependenceのいずれかを設定します。 また、typeの設定に合わせてdetail_static/detail_dynamic/detail_dependenceのいずれかを設定します。|true|String| |
 |quantity| 初期状態での数量を設定します。ユーザーの操作で変動する項目。　特に理由がなければ初期値0を設定します。 |true|Number| |
 |cost| 項目の小計を設定します。ユーザーの操作で変動する項目。　特に理由がなければ初期値0を設定します。 |true|Number| |

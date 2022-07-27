@@ -177,7 +177,7 @@
               "name": "パソコン設置セットアップ",
               "is_disabled": false,
               "is_required": false,
-              "description": "PC新規導入や買い替え時の開梱作業からPC付属の周辺機器取り付けまで行い、パソコンを使える状態に設置設定・初期セットアップを致します",
+              "description": "このように<span style=\"background-color: rgba(168, 86, 124, 0.536);\">HTMLを埋め込むこと</span>で画像挿入や修飾ができますが、jsonに埋め込むためには<span style=\"background-color: rgba(168, 86, 124, 0.536);\">エスケープ処理</span>をする必要があります。",
               "type": "dynamic",
               "quantity": 0,
               "cost": 0,

@@ -3,7 +3,7 @@ import App from './App.vue'
 
 const SETTINGS = {
   url: './example.json',
-  initCategoryIndex: 1,
+  initCategoryIndex: 0,
   initProcessIndex: 0,
   debug: true,
   useLoading: true,

@@ -57,7 +57,7 @@ const onChangeCheckChild = (e: Event, item_id: string): void => {
       <p v-if="item.type === 'dependence'" class="mv-item-unitcost">{{ baseProcessNameComputed + 'の' + item.detail_dependence!.coefficient * 100 + '%' + '('+ '¥' + money(unitCost(item, baseCostComputed)) +')' }}</p>
     </div>
     <div class="mv-item-description-wrapper">
-      <p>{{ item.description }}</p>
+      <div class="mv-item-description" v-html="item.description "></div>
     </div>
     <div class="mv-item-input-cost-wrapper">
       <div class="mv-item-input-wrapper">
