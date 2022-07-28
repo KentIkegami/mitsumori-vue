@@ -60,7 +60,7 @@ const onClickPrint = ():void => {
         <p class="mv-print-partner mv-print-text"><u v-show="partnerName !== ''">{{ partnerName }}&nbsp;御中</u></p>
         <p class="mv-print-today mv-print-text">見積日: {{ todayStr() }}</p>
         <p class="mv-print-owner-name mv-print-text">{{ ownerCompanyName }}</p>
-        <p class="mv-print-total-cost mv-print-text">合計&nbsp;¥&nbsp;{{ money(allCostComputed+tax(allCostComputed)) }}&nbsp;-(税込)</p>
+        <p class="mv-print-total-cost mv-print-text">合計金額&nbsp;¥&nbsp;{{ money(allCostComputed+tax(allCostComputed)) }}&nbsp;-(税込)</p>
         <p class="mv-print-owner-address mv-print-text">{{ ownerCompanyAddress }}</p>
       </div>
       <div class="mv-print-content-main">
