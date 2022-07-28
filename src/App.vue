@@ -25,9 +25,12 @@ import type { UserInput } from './types/UserInput';
 import type {PropagationGroup } from './types/PropagationGroup';
 import type {Propagation } from './types/Propagation';
 import type { SumTargetItemQuantity } from './types/SumTargetItemQuantity'
+import type { JsonData } from './types/JsonData';
 
 import CalcHelper from './helpers/calcHelper';
+import JsonHelper from './helpers/jsonHelper';
 const { money } = CalcHelper();
+const { checkJson } = JsonHelper();
 
 const props = defineProps({
   url: {
@@ -46,6 +49,11 @@ const props = defineProps({
     default: null
   },
   debug: {
+    type: Boolean,
+    required: false,
+    default: false
+  },
+  useCheckJson: {
     type: Boolean,
     required: false,
     default: false
@@ -134,6 +142,7 @@ const initData = ref<InitData>({
 
 const viewState = ref<ViewState>({
   isDebugMode: false,
+  isUseCheckJson: false,
   isUseLoading: true,
   isUseTerms: true,
   isUseTermsConfirmationCheck: true,
@@ -189,6 +198,7 @@ if(props.ownerCompanyAddress){ownerSetting.value.ownerCompanyAddress = props.own
 if(props.ownerEmail){ownerSetting.value.ownerEmail = props.ownerEmail!;}
 if(props.useLoading){viewState.value.isUseLoading = props.useLoading!;}
 if(props.debug){viewState.value.isDebugMode = props.debug!;}
+if(props.useCheckJson){viewState.value.isUseCheckJson = props.useCheckJson!;}
 if(props.useTerms){viewState.value.isUseTerms = props.useTerms!;}
 if(props.useTermsConfirmationCheck){viewState.value.isUseTermsConfirmationCheck = props.useTermsConfirmationCheck!;}
 if(props.usePdfEstimate){viewState.value.isUseEmailEstimate = props.useEmailEstimate!;}
@@ -224,6 +234,13 @@ const getJson = (): void => {
     })
     .then(data => {
       log(['getJson()', 'success']);
+      if (viewState.value.isUseCheckJson){
+        try {
+          checkJson(data);
+        } catch (e) {
+          console.error(e);
+        }
+      }
       initData.value.jsonData = data
       if (initData.value.jsonData){
         log(['initCategoryIndex', props.initCategoryIndex])
@@ -241,16 +258,15 @@ const getJson = (): void => {
         viewState.value.isLoading = false
       }, 1000)
     })
-    .catch(error => {
-      log(['getJson()', 'error']);
-      console.log(error);
+    .catch(e => {
+      log(['getJson()', 'error', e]);
+       console.error(e);
       initData.value.jsonData = null
     }
   );
 };
 
 getJson()
-
 
 const initExtraLogic = (): void =>{
   log(['initExtraLogic'])
@@ -260,7 +276,6 @@ const initExtraLogic = (): void =>{
     }
   }
 }
-
 
 const sumTargetItemQuantityComputed = computed((): string => {
   let text = '';
@@ -324,7 +339,7 @@ const calcItemCost = (item: Item): void => {
       item.cost = item.quantity * baseCostComputed.value * item.detail_dependence!.coefficient
       break;
     default:
-      console.log('calcItemValue: Reach default.');
+      log(['calcItemValue: Reach default.']);
   }
 };
 
@@ -556,7 +571,6 @@ const mailToComputed = computed((): string => {
   if ((!initData.value.jsonData)||(!userSelection.value.category)||(!userSelection.value.categoryIndex)){
     return text
   }
-  console.log(userSelection.value.categoryIndex)
   text += '%0D%0A'
   text += 'カテゴリー:' + initData.value.jsonData.categories[userSelection.value.categoryIndex].name
   text += '%0D%0A'

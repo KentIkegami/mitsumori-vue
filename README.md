@@ -1,10 +1,37 @@
 # mitsumori-vue
 
-さまざまな見積もりを算出するためのインターフェースモジュールです。
+さまざまな見積もりを算出するためのインターフェースコンポーネントです。
+mitsumori-vueコンポーネントは、propsのurlで設定したパスからjson形式のデータを読み込み、画面を構成しています。
+propsの設定値については[こちら](#props)を参照してください。
+
+
+- [mitsumori-vue](#mitsumori-vue)
+  - [Dependency](#dependency)
+  - [導入(npm)](#導入npm)
+  - [導入(CDN)](#導入cdn)
+  - [デモ](#デモ)
+  - [jsonの入力例](#jsonの入力例)
+  - [HTMLをJSONに埋め込める形に変換](#htmlをjsonに埋め込める形に変換)
+  - [Props](#props)
+    - [propsの項目](#propsの項目)
+    - [設定例](#設定例)
+  - [考え方](#考え方)
+    - [カテゴリー Categories](#カテゴリー-categories)
+    - [プロセス Processes](#プロセス-processes)
+    - [アイテム items](#アイテム-items)
+  - [json仕様](#json仕様)
+    - [Root](#root)
+    - [Category](#category)
+    - [Process](#process)
+    - [Item](#item)
+    - [Propagation](#propagation)
+    - [ExtraLogic](#extralogic)
+
 
 ## Dependency
 
 Vue3(3.2+)
+
 
 ## 導入(npm)
 
@@ -79,15 +106,96 @@ createApp(MitsumoriVue, SETTINGS).mount('#mitsumori-vue-app')
 </html>
 ```
 
+
+
 ## デモ
 
 [https://kentikegami.github.io/mitsumori-vue/](https://kentikegami.github.io/mitsumori-vue/)
 
-## 仕組み
 
-mitsumori-vueコンポーネントは、propsのurlで設定したパスからjson形式のデータを読み込み、画面を構成しています。
-propsの設定値については[こちら](#props)を参照してください。
 
+## jsonの入力例
+
+[https://unpkg.com/mitsumori-vue@0.1.6/dist/example.json](https://unpkg.com/mitsumori-vue@0.1.6/dist/example.json)
+
+
+
+## HTMLをJSONに埋め込める形に変換
+
+一部のjson項目はhtml表示に対応している。
+[こちら](http://html-json-escape-vue.s3-website-ap-northeast-1.amazonaws.com/)でHTMLのエスケープ処理を行ってください。
+
+
+
+
+
+## Props
+
+### propsの項目
+
+|Key|Description|Required|Type|Default|
+|-----|-----------|--------|----|-------|
+|url| jsonデータの取得先 |false|String| './example.json'|
+|initCategoryIndex| カテゴリーの初期選択のインデックス番号 |false|Number?| null |
+|initProcessIndex| プロセスの初期選択のインデックス番号 |false|Number?| null |
+|debug| trueでデバッグログをコンソールに吐き出します。 |false|Boolean| false |
+|useCheckJson| trueで読み込むjsonの書式チェックを行います。 |false|Boolean| false |
+|useLoading| ページ読み込み時にローディングを表示します。 |false|Boolean| true |
+|useTerms| 利用規約を表示します。 |false|Boolean| true |
+|useTermsConfirmationCheck| 利用規約を許諾するかのチェックボックスを表示します。 |false|Boolean| true |
+|useEmailEstimate| メールによる見積もりの問い合わせボタンを表示します。 |false|Boolean| true |
+|usePdfEstimate| PDFの見積書をプレビューするためのボタンを表示します。 |false|Boolean| true |
+|usePdfEstimateMetaField| PDFの見積書に載せる、御中・自社名・自社住所の設定を行うためのフィールドを表示します。 |false|Boolean| true |
+|categorySelectTitle| カテゴリー選択の上部に表示する文字列の設定 |false|String| '見積もりの種類' |
+|ownerCompanyName| PDFに載せる自社名 |false|String| '〇〇コーポレーション' |
+|ownerCompanyAddress| PDFに載せる自社住所 |false|String| '東京都 中央区 1-1-1' |
+|ownerEmail| メールによる見積もりの送信先アドレス |false|String| 'info@example.com' |
+|prosessColors| プロセス選択ボタンの色設定 |false|[String]| ※ |
+|partsColor| パーツの色設定 パーツはチェックボックス・レンジ・ボタン |false|String| '#2e80ff' |
+|itemBackColor| アイテムの背景色設定 |false|String| '#d9e9ff' |
+
+※['#5f91a6','#8CBFBF','#84B5A7','#B899F2','#A79FFC''#9DAAE6','#9FC9FC','#99D8F2']
+
+
+
+### 設定例
+
+```js
+
+const SETTINGS = {
+  url: 'https://unpkg.com/mitsumori-vue@0.1.6/dist/example.json',
+  initCategoryIndex: 0,
+  initProcessIndex: 0,
+  debug: false,
+  useCheckJson: false,
+  useLoading: true,
+  useTerms: true,
+  useTermsConfirmationCheck: true,
+  useEmailEstimate: true,
+  usePdfEstimate: true,
+  usePdfEstimateMetaField: true,
+  categorySelectTitle: '見積もりの種類',
+  ownerCompanyName: '株式会社〇〇',
+  ownerCompanyAddress: '東京都丸々市1-1-1',
+  ownerEmail: 'mitsumori@example.com',
+  prosessColors: [
+    '#fe7d7d',
+    '#fd9f68',
+    '#fdb64f',
+    '#ffc037',
+    '#ffd137',
+    '#ffe237',
+    '#fff11e',
+    '#fbff38',
+    '#eaff38',
+    '#d9ff38'
+  ],
+  partsColor: '#FFC338',
+  itemBackColor: '#FFFFC2'
+}
+
+
+```
 
 ## 考え方
 
@@ -122,11 +230,6 @@ propsの設定値については[こちら](#props)を参照してください�
 細かいことを指摘すると、`魔王討伐代行` のサービスは、剣でトドメを刺すとか回復薬を使わないで倒すとか、いくつかの(素人にはわからない)オプションの差異があります。
 
 これらの差異で料金が変わるなら、アイテムを分けた方がいいし、指定されたくない場合は分けない方がいいでしょう。
-
-
-## jsonの入力例
-
-[https://unpkg.com/mitsumori-vue@0.1.6/dist/example.json](https://unpkg.com/mitsumori-vue@0.1.6/dist/example.json)
 
 
 ## json仕様
@@ -205,7 +308,7 @@ propsの設定値については[こちら](#props)を参照してください�
 
 ```
 
-### 全体の設定
+### Root
 
 ```json
 
@@ -227,9 +330,10 @@ propsの設定値については[こちら](#props)を参照してください�
 |categories| カテゴリーの配列 |true|[Category]| |
 
 
-### カテゴリーの詳細
 
-#### Json
+### Category
+
+Category配列の順番が、画面表示時の順番になります。
 
 ```json
 {
@@ -246,11 +350,6 @@ propsの設定値については[こちら](#props)を参照してください�
 }
 ```
 
-Category配列の順番が、画面表示時の順番になります。
-
-
-#### Category
-
 |Key|Description|Required|Type|Use html|
 |-----|-----------|--------|----|:-:|
 |name| カテゴリーの表示名 |true|String| |
@@ -259,9 +358,10 @@ Category配列の順番が、画面表示時の順番になります。
 |processes| プロセスの配列 |true|[Process]| |
 |extra_logic| 追加ロジック |false|| |
 
-### プロセスの詳細
 
-#### Json
+### Process
+
+Process配列の順番が、画面表示時の順番になります。
 
 ```json
 
@@ -282,19 +382,18 @@ Category配列の順番が、画面表示時の順番になります。
 }
 ```
 
-Process配列の順番が、画面表示時の順番になります。
-
-#### Process
-
 |Key|Description|Required|Type|Use html|
 |-----|-----------|--------|----|:-:|
 |name| プロセスの表示名 |true|String| |
 |base| 後述する、item.type: "dependence" の時にベースとなるプロセスにtrueを設定します。|false|Boolean| |
 |items| アイテムの配列 |true|[Item]| |
 
-### アイテムの詳細
 
-#### Json
+
+### Item
+
+Item配列の順番が、画面表示時の順番になります。
+
 
 ```json
 
@@ -342,10 +441,6 @@ Process配列の順番が、画面表示時の順番になります。
 }
 ```
 
-Item配列の順番が、画面表示時の順番になります。
-
-#### Item
-
 |Key|Description|Required|Type|Use html|
 |-----|-----------|--------|----|:-:|
 |item_id| itemのID。UUID形式である必要はないですが、ユニークである必要はあります。 |true|String| |
@@ -361,7 +456,7 @@ Item配列の順番が、画面表示時の順番になります。
 |detail_dependence| type:"dependence"を設定した場合は必須です。 |false|DetailDependence| |
 
 
-#### item.type
+item.type
 
 |Key|Name|Description|input tag|
 |-----|----|--------|----|
@@ -370,14 +465,14 @@ Item配列の順番が、画面表示時の順番になります。
 |dependence|依存項目|baseとなるプロセスのアイテムの小計に、係数をかけて金額を出す項目|checkbox|
 
 
-#### DetailStatic
+DetailStatic
 
 |Key|Description|Required|Type|Use html|
 |-----|-----------|--------|----|:-:|
 |unit_cost| 単価 |true|Number| |
 
 
-#### DetailDynamic
+DetailDynamic
 
 |Key|Description|Required|Type|Use html|
 |-----|-----------|--------|----|:-:|
@@ -389,7 +484,8 @@ Item配列の順番が、画面表示時の順番になります。
 |max_quantity| 発注数の最大数。 |true|Number| |
 
 
-#### DetailDependence
+
+DetailDependence
 
 |Key|Description|Required|Type|Use html|
 |-----|-----------|--------|----|:-:|
@@ -398,7 +494,7 @@ Item配列の順番が、画面表示時の順番になります。
 
 
 
-### 伝播の詳細
+### Propagation
 
 アイテムを編集した際に、他のアイテムに対して影響を与えたい場合があります。
 
@@ -408,7 +504,14 @@ Item配列の順番が、画面表示時の順番になります。
 
 あるアイテムAを変化させたときにあるアイテムBに指定した影響を与えるという設定を、`Propagation` 伝播　で行います。
 
-#### Json
+
+仕様
+
+- 同一グループ内で矛盾した設定も許すが、配列の最後のものが優先される。
+- 他グループとの矛盾した設定も許すが、配列の最後のものが優先される。
+- 違うカテゴリーのアイテムIDは設定できない。
+
+
 
 ```json
 {
@@ -440,7 +543,7 @@ Item配列の順番が、画面表示時の順番になります。
 ```
 
 
-#### PropagationGroup
+PropagationGroup
 
 |Key|Description|Required|Type|Use html|
 |-----|-----------|--------|----|:-:|
@@ -448,7 +551,7 @@ Item配列の順番が、画面表示時の順番になります。
 |propagations| 伝播設定の配列 |false|[Propagation]| |
 
 
-#### Propagation
+Propagation
 
 |Key|Description|Required|Type|
 |-----|-----------|--------|----|
@@ -456,17 +559,8 @@ Item配列の順番が、画面表示時の順番になります。
 |to_id| B側のアイテムのID。 |true|String|
 |type| 伝播のタイプ |true|String|
 
-#### 仕様
 
-- "伝播" はひとまとまりで追加していく ※まとめて消せるように。
-- Aのitemの個数の変更時に、Bに対して影響を伝播する。
-- A to Bの と B to A　は別定義。
-- 同一グループ内で矛盾した設定も許すが、配列の最後のものが優先される。
-- 他グループとの矛盾した設定も許すが、配列の最後のものが優先される。
-- 違うカテゴリーのアイテムIDは設定できない。
-
-
-#### propagation.type
+propagation.type
 
 |Key|Description|
 |-----|-----------|
@@ -480,12 +574,10 @@ Item配列の順番が、画面表示時の順番になります。
 
 
 
-
-### エクストラロジック
+### ExtraLogic
 
 特定の業界、商慣習でのみ活用できる機能を追加していく。
 
-#### Json
 
 ```json
 {
@@ -503,10 +595,10 @@ Item配列の順番が、画面表示時の順番になります。
 
 |Key|Description|Required|Type|Use html|
 |-----|-----------|--------|----|:-:|
-|sum_target_item_quantity| 特定のアイテムの数の合算を画面上部に出すための設定 |false|SumTargetItemQuantity| |
+|sum_target_item_quantity| 特定のアイテムの数の合算を画面上部に出すための設定 |false|[SumTargetItemQuantity]| |
 
 
-#### SumTargetItemQuantity
+SumTargetItemQuantity
 
 ```json
 {
@@ -528,6 +620,7 @@ Item配列の順番が、画面表示時の順番になります。
 
 ```
 
+
 |Key|Description|Required|Type|Use html|
 |-----|-----------|--------|----|:-:|
 |prefix| 接頭辞 |false|String| |
@@ -538,78 +631,4 @@ Item配列の順番が、画面表示時の順番になります。
 
 
 
-<a id="props"></a>
-
-## Props
-
-### propsの項目
-
-|Key|Description|Required|Type|Default|
-|-----|-----------|--------|----|-------|
-|url| jsonデータの取得先 |false|String| './example.json'|
-|initCategoryIndex| カテゴリーの初期選択のインデックス番号 |false|Number?| null |
-|initProcessIndex| プロセスの初期選択のインデックス番号 |false|Number?| null |
-|debug| trueでデバッグログをコンソールに吐き出します。 |false|Boolean| false |
-|useLoading| ページ読み込み時にローディングを表示します。 |false|Boolean| true |
-|useTerms| 利用規約を表示します。 |false|Boolean| true |
-|useTermsConfirmationCheck| 利用規約を許諾するかのチェックボックスを表示します。 |false|Boolean| true |
-|useEmailEstimate| メールによる見積もりの問い合わせボタンを表示します。 |false|Boolean| true |
-|usePdfEstimate| PDFの見積書をプレビューするためのボタンを表示します。 |false|Boolean| true |
-|usePdfEstimateMetaField| PDFの見積書に載せる、御中・自社名・自社住所の設定を行うためのフィールドを表示します。 |false|Boolean| true |
-|categorySelectTitle| カテゴリー選択の上部に表示する文字列の設定 |false|String| '見積もりの種類' |
-|ownerCompanyName| PDFに載せる自社名 |false|String| '〇〇コーポレーション' |
-|ownerCompanyAddress| PDFに載せる自社住所 |false|String| '東京都 中央区 1-1-1' |
-|ownerEmail| メールによる見積もりの送信先アドレス |false|String| 'info@example.com' |
-|prosessColors| プロセス選択ボタンの色設定 |false|[String]| ※ |
-|partsColor| パーツの色設定 パーツはチェックボックス・レンジ・ボタン |false|String| '#2e80ff' |
-|itemBackColor| アイテムの背景色設定 |false|String| '#d9e9ff' |
-
-※['#5f91a6','#8CBFBF','#84B5A7','#B899F2','#A79FFC''#9DAAE6','#9FC9FC','#99D8F2']
-
-
-
-### 設定例
-
-```js
-
-const SETTINGS = {
-  url: 'https://unpkg.com/mitsumori-vue@0.1.6/dist/example.json',
-  initCategoryIndex: 0,
-  initProcessIndex: 0,
-  debug: true,
-  useLoading: true,
-  useTerms: true,
-  useTermsConfirmationCheck: true,
-  useEmailEstimate: true,
-  usePdfEstimate: true,
-  usePdfEstimateMetaField: true,
-  categorySelectTitle: '見積もりの種類',
-  ownerCompanyName: '株式会社〇〇',
-  ownerCompanyAddress: '東京都丸々市1-1-1',
-  ownerEmail: 'mitsumori@example.com',
-  prosessColors: [
-    '#fe7d7d',
-    '#fd9f68',
-    '#fdb64f',
-    '#ffc037',
-    '#ffd137',
-    '#ffe237',
-    '#fff11e',
-    '#fbff38',
-    '#eaff38',
-    '#d9ff38'
-  ],
-  partsColor: '#FFC338',
-  itemBackColor: '#FFFFC2'
-}
-
-
-```
-
-
-
-## HTML <-> JSON 変換
-
-一部のjson項目はhtml表示に対応している。
-[こちら](http://html-json-escape-vue.s3-website-ap-northeast-1.amazonaws.com/)でHTMLのエスケープ処理を行ってください。
 

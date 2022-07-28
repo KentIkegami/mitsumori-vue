@@ -6,6 +6,7 @@ const SETTINGS = {
   initCategoryIndex: 0,
   initProcessIndex: 0,
   debug: true,
+  useCheckJson: true,
   useLoading: true,
   useTerms: true,
   useTermsConfirmationCheck: true,
