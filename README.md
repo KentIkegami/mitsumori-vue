@@ -77,7 +77,7 @@ createApp(MitsumoriVue, SETTINGS).mount('#mitsumori-vue-app')
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="https://unpkg.com/mitsumori-vue@0.1.6/dist/style.css">
+    <link rel="stylesheet" href="https://unpkg.com/mitsumori-vue@0.1.9/dist/style.css">
     <title>mitsumori-vue-app</title>
   </head>
   <body>
@@ -88,7 +88,7 @@ createApp(MitsumoriVue, SETTINGS).mount('#mitsumori-vue-app')
     {
       "imports": {
         "vue": "https://unpkg.com/vue@next/dist/vue.esm-browser.js",
-        "mitsumori-vue": "https://unpkg.com/mitsumori-vue@0.1.6/dist/mitsumori-vue.es.js"
+        "mitsumori-vue": "https://unpkg.com/mitsumori-vue@0.1.9/dist/mitsumori-vue.es.js"
       }
     }
   </script>
@@ -97,7 +97,7 @@ createApp(MitsumoriVue, SETTINGS).mount('#mitsumori-vue-app')
   import { MitsumoriVue } from 'mitsumori-vue';
   
   const SETTINGS = {
-    url: "https://unpkg.com/mitsumori-vue@0.1.6/dist/example.json"
+    url: "https://unpkg.com/mitsumori-vue@0.1.9/dist/example.json"
   }
   
   createApp(MitsumoriVue, SETTINGS).mount('#mitsumori-vue-app')
@@ -116,7 +116,7 @@ createApp(MitsumoriVue, SETTINGS).mount('#mitsumori-vue-app')
 
 ## jsonの入力例
 
-[https://unpkg.com/mitsumori-vue@0.1.6/dist/example.json](https://unpkg.com/mitsumori-vue@0.1.6/dist/example.json)
+[https://unpkg.com/mitsumori-vue@0.1.9/dist/example.json](https://unpkg.com/mitsumori-vue@0.1.9/dist/example.json)
 
 
 
@@ -163,7 +163,7 @@ createApp(MitsumoriVue, SETTINGS).mount('#mitsumori-vue-app')
 ```js
 
 const SETTINGS = {
-  url: 'https://unpkg.com/mitsumori-vue@0.1.6/dist/example.json',
+  url: 'https://unpkg.com/mitsumori-vue@0.1.9/dist/example.json',
   initCategoryIndex: 0,
   initProcessIndex: 0,
   debug: false,
