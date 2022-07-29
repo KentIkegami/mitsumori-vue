@@ -416,13 +416,13 @@ const propagateItemQuantityChange = (fromItem: Item): void => {
         }
         break;
       case 'ONE_TO_DISABLE':
-        if (fromItem.quantity === 1 ){
+        if (fromItem.quantity !== 0 ){
           log(['propagateItemQuantityChange', 'ONE_TO_DISABLE', to_item.item_id])
           to_item.is_disabled = true;
         }
         break;
       case 'ONE_TO_ABLE':
-        if (fromItem.quantity === 1 ){
+        if (fromItem.quantity !== 0 ){
           log(['propagateItemQuantityChange', 'ONE_TO_ABLE', to_item.item_id])
           to_item.is_disabled = false;
         }
