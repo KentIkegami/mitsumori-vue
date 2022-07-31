@@ -10,15 +10,40 @@
     {
       "name": "パソコンサポート",
       "description": "",
-      "extra_logic":
-      {
-        "sum_target_item_quantity": 
+      "extra_computeds": 
+      [
         {
-          "prefix": "パソコン", 
-          "suffix": "台", 
-          "target_item_ids":["20c2703f-3243-4284-b6af-4a003d60272d"]
+          "description": "インターネット接続設定の総発注数を表示する",
+          "calc_result": "",
+          "is_show": true,
+          "trigger_item_ids":["a1aff844-9f4f-4520-ac4d-40f593de9809", "7ea3f236-1b23-4ce5-b103-35416d84ff5e", "db7e538d-dc4b-4440-903e-a4f6fa19e302", "c2e972cf-0e4c-4336-b504-bb54e921265a"],
+          "var_items":
+          [
+            {
+              "var_name": "a",
+              "item_id": "a1aff844-9f4f-4520-ac4d-40f593de9809",
+              "property": "quantity"
+            },
+            {
+              "var_name": "b",
+              "item_id": "7ea3f236-1b23-4ce5-b103-35416d84ff5e",
+              "property": "quantity"
+            },
+            {
+              "var_name": "c",
+              "item_id": "db7e538d-dc4b-4440-903e-a4f6fa19e302",
+              "property": "quantity"
+            },
+            {
+              "var_name": "d",
+              "item_id": "c2e972cf-0e4c-4336-b504-bb54e921265a",
+              "property": "quantity"
+            }
+          ],
+          "calc_logic": "'合計' + (a + b + c + d) + '回線'",
+          "show_logic": "a + b + c + b > 0"
         }
-      },
+      ],
       "propagation_groups":
       [
         {

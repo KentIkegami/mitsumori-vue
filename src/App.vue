@@ -20,15 +20,16 @@ import type { Process } from './types/Process';
 import type { UserSelection } from './types/UserSelection';
 import type { ViewState } from './types/ViewState';
 import type { ViewSetting } from './types/ViewSetting';
+import type { VarItem } from './types/VarItem';
 import type { OwnerSetting } from './types/OwnerSetting';
 import type { UserInput } from './types/UserInput';
 import type {PropagationGroup } from './types/PropagationGroup';
 import type {Propagation } from './types/Propagation';
-import type { SumTargetItemQuantity } from './types/SumTargetItemQuantity'
 import type { JsonData } from './types/JsonData';
 
 import CalcHelper from './helpers/calcHelper';
 import JsonHelper from './helpers/jsonHelper';
+import type { ExtraComputed } from './types/ExtraComputed';
 const { money } = CalcHelper();
 const { checkJson } = JsonHelper();
 
@@ -152,13 +153,14 @@ const viewState = ref<ViewState>({
   isShowPrintContent: false,
   isLoading: false,
   isCheckedTerms: false,
-  isUseSumTargetItemQuantity: false,
 });
 
 const userSelection = ref<UserSelection>({
   category: null,
   categoryIndex: -1,
-  processIndex: 0
+  processIndex: 0,
+  extra_computed_trigger_item_ids: [],
+  propagation_trigger_item_ids: []
 });
 
 const userInput = ref<UserInput>({
@@ -253,7 +255,8 @@ const getJson = (): void => {
           userSelection.value.processIndex = props.initProcessIndex
         }
       }
-      initExtraLogic()
+      initPropagation()
+      initExtraComputeds()
       setTimeout(() => {
         viewState.value.isLoading = false
       }, 1000)
@@ -268,31 +271,28 @@ const getJson = (): void => {
 
 getJson()
 
-const initExtraLogic = (): void =>{
-  log(['initExtraLogic'])
-  if((userSelection.value.category)&&(userSelection.value.category.extra_logic)){
-    if(userSelection.value.category.extra_logic.sum_target_item_quantity){
-      viewState.value.isUseSumTargetItemQuantity = true;
-    }
+const initPropagation = (): void =>{
+  log(['initPropagation'])
+  if((userSelection.value.category)&&(userSelection.value.category.propagation_groups)){
+    userSelection.value.category.propagation_groups.forEach(propagationGroup => {
+      propagationGroup.propagations.forEach(propagation => {
+        userSelection.value.propagation_trigger_item_ids.push(propagation.from_id);
+      });
+    });
+    userSelection.value.propagation_trigger_item_ids = Array.from(new Set(userSelection.value.propagation_trigger_item_ids))
   }
 }
 
-const sumTargetItemQuantityComputed = computed((): string => {
-  let text = '';
-  if((userSelection.value.category)&&(userSelection.value.category.extra_logic)){
-    if(userSelection.value.category.extra_logic.sum_target_item_quantity){
-      const ids = userSelection.value.category.extra_logic.sum_target_item_quantity.target_item_ids;
-      let sum: number = 0;
-      itemByIds(ids).forEach((item) =>{
-        sum += item.quantity;
-      })
-      text += userSelection.value.category.extra_logic.sum_target_item_quantity.prefix;
-      text += String(sum);
-      text += userSelection.value.category.extra_logic.sum_target_item_quantity.suffix;
-    }
+const initExtraComputeds = (): void =>{
+  log(['initExtraComputeds'])
+  if((userSelection.value.category)&&(userSelection.value.category.extra_computeds)){
+    userSelection.value.category.extra_computeds.forEach(extraComputed => {
+      userSelection.value.extra_computed_trigger_item_ids = userSelection.value.extra_computed_trigger_item_ids.concat(extraComputed.trigger_item_ids);
+    });
+    userSelection.value.extra_computed_trigger_item_ids = Array.from(new Set(userSelection.value.extra_computed_trigger_item_ids))
+    calcExtraComputedAllFromItemQuantityChange(null);
   }
-  return text;
-});
+}
 
 /**
  * カテゴリーの選択時に発火する
@@ -365,76 +365,117 @@ const onChangeItem = (value: number, item_id: string): void => {
       calcDependences();
     }
     // 影響を与える
-    propagateItemQuantityChange(item)
+    if (userSelection.value.propagation_trigger_item_ids.includes(item.item_id)){
+      propagateAllFromItemQuantityChange(item);
+    }
+    // エクストラ計算を行う
+    if (userSelection.value.extra_computed_trigger_item_ids.includes(item.item_id)){
+      calcExtraComputedAllFromItemQuantityChange(item);
+    }
   }
 }
 
 
-const propagateItemQuantityChange = (fromItem: Item): void => {
+const calcExtraComputedAllFromItemQuantityChange = (fromItem: Item | null): void => {
+  let filteredExtraComputeds: ExtraComputed[] = [];
+  if (fromItem !== null){
+    userSelection.value.category!.extra_computeds.forEach((extraComputed: ExtraComputed) => {
+      if(extraComputed.trigger_item_ids.includes(fromItem?.item_id)){
+        filteredExtraComputeds.push(extraComputed);
+      }
+    });
+  }else{
+    filteredExtraComputeds = userSelection.value.category!.extra_computeds;
+  }
+  filteredExtraComputeds.forEach((extraComputed: ExtraComputed) => {
+    calcExtraComputedOne(extraComputed);
+  });
+}
 
+const calcExtraComputedOne = (extraComputed: ExtraComputed): void => {
+  let var_names: string[] = [];
+  let vals: any[] = [];
+  extraComputed.var_items.forEach((var_item: VarItem) => {
+    const item = itemById(var_item.item_id);
+    if (item){
+      const key: keyof Item = var_item.property as keyof Item;
+      vals.push(item[key]);
+      var_names.push(var_item.var_name);
+    }
+  });
+  const calcLogic = new Function(var_names.join(','),'"use strict";return (' + extraComputed.calc_logic + ')');
+  const showLogic = new Function(var_names.join(','),'"use strict";return (' + extraComputed.show_logic + ')');
+  extraComputed.calc_result = calcLogic(...vals);
+  extraComputed.is_show = showLogic(...vals);
+}
+
+const propagateAllFromItemQuantityChange = (fromItem: Item): void => {
   const propagationGroups = userSelection.value.category!.propagation_groups
-
   let filteredProps: Propagation[] = [];
   propagationGroups.forEach((propagationGroup: PropagationGroup) => {
     const tmp: Propagation[] = propagationGroup.propagations.filter(e => e.from_id == fromItem.item_id);
     filteredProps = filteredProps.concat(tmp);
   });
   filteredProps.forEach((filteredProp: Propagation) => {
-    let needCalc = false;
-    let to_item = itemById(filteredProp.to_id);
-    if (to_item){
-      switch (filteredProp.type){
-      case 'ZERO_TO_ZERO':
-        if (fromItem.quantity === 0 ){
-          log(['propagateItemQuantityChange', 'ZERO_TO_ZERO', to_item.item_id])
-          to_item.quantity = 0;
-          needCalc = true;
-        }
-        break;
-      case 'ONE_TO_ONE':
-        if (fromItem.quantity === 1 ){
-          log(['propagateItemQuantityChange', 'ONE_TO_ONE', to_item.item_id])
-          to_item.quantity = 1;
-          needCalc = true;
-        }
-        break;
-      case 'N_TO_N':
-        log(['propagateItemQuantityChange', 'N_TO_N', to_item.item_id])
-        to_item.quantity = fromItem.quantity;
-        needCalc = true;
-        break;
-      case 'ZERO_TO_DISABLE':
-        if (fromItem.quantity === 0 ){
-          log(['propagateItemQuantityChange', 'ZERO_TO_DISABLE', to_item.item_id])
-          to_item.is_disabled = true;
-        }
-        break;
-      case 'ZERO_TO_ABLE':
-        if (fromItem.quantity === 0 ){
-          log(['propagateItemQuantityChange', 'ZERO_TO_ABLE', to_item.item_id])
-          to_item.is_disabled = false;
-        }
-        break;
-      case 'ONE_TO_DISABLE':
-        if (fromItem.quantity !== 0 ){
-          log(['propagateItemQuantityChange', 'ONE_TO_DISABLE', to_item.item_id])
-          to_item.is_disabled = true;
-        }
-        break;
-      case 'ONE_TO_ABLE':
-        if (fromItem.quantity !== 0 ){
-          log(['propagateItemQuantityChange', 'ONE_TO_ABLE', to_item.item_id])
-          to_item.is_disabled = false;
-        }
-        break;
-      default:
-        break;
-      }
-      if (needCalc){
-        calcItemCost(to_item);
-      }
-    }
+    propagateOne(fromItem, filteredProp);
   });
+}
+
+const propagateOne = (fromItem: Item, propagation: Propagation): void => {
+  let needCalc = false;
+  let to_item = itemById(propagation.to_id);
+  if (to_item){
+    switch (propagation.type){
+    case 'ZERO_TO_ZERO':
+      if (fromItem.quantity === 0 ){
+        log(['propagate', 'ZERO_TO_ZERO', to_item.item_id])
+        to_item.quantity = 0;
+        needCalc = true;
+      }
+      break;
+    case 'ONE_TO_ONE':
+      if (fromItem.quantity === 1 ){
+        log(['propagate', 'ONE_TO_ONE', to_item.item_id])
+        to_item.quantity = 1;
+        needCalc = true;
+      }
+      break;
+    case 'N_TO_N':
+      log(['propagate', 'N_TO_N', to_item.item_id])
+      to_item.quantity = fromItem.quantity;
+      needCalc = true;
+      break;
+    case 'ZERO_TO_DISABLE':
+      if (fromItem.quantity === 0 ){
+        log(['propagate', 'ZERO_TO_DISABLE', to_item.item_id])
+        to_item.is_disabled = true;
+      }
+      break;
+    case 'ZERO_TO_ABLE':
+      if (fromItem.quantity === 0 ){
+        log(['propagate', 'ZERO_TO_ABLE', to_item.item_id])
+        to_item.is_disabled = false;
+      }
+      break;
+    case 'ONE_TO_DISABLE':
+      if (fromItem.quantity !== 0 ){
+        log(['propagate', 'ONE_TO_DISABLE', to_item.item_id])
+        to_item.is_disabled = true;
+      }
+      break;
+    case 'ONE_TO_ABLE':
+      if (fromItem.quantity !== 0 ){
+        log(['propagate', 'ONE_TO_ABLE', to_item.item_id])
+        to_item.is_disabled = false;
+      }
+      break;
+    default:
+      break;
+    }
+    if (needCalc){
+      calcItemCost(to_item);
+    }
+  }
 }
 
 /**
@@ -603,7 +644,9 @@ const mailToComputed = computed((): string => {
         @onClickProcessParent = "onClickProcess"
         />
         <div class="mv-sticky-items-wrapper">
-          <div v-show="viewState.isUseSumTargetItemQuantity"> {{ sumTargetItemQuantityComputed }}</div>
+           <div v-for="extraComputed in userSelection.category.extra_computeds">
+            <span v-show="extraComputed.is_show">{{ extraComputed.calc_result }}</span>
+          </div>
           <div class="mv-space"></div>
           <TotalAmountOneLine :allCostComputed="allCostComputed" />
         </div>

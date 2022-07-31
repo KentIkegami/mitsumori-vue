@@ -66,7 +66,7 @@ export default function (){
       existAndTypeCheck(category, 'description', 'string', true, 'category.name:'+category.name);
       const existPropagationGroups = existAndTypeCheck(category, 'propagation_groups', 'array', false, 'category.name:'+category.name);
       const existProcesses = existAndTypeCheck(category, 'processes', 'array', true, 'category.name:'+category.name);
-      const existExtraLogic = existAndTypeCheck(category, 'extra_logic', 'object', false , 'category.name:'+category.name);
+      const extraComputeds = existAndTypeCheck(category, 'extra_computeds', 'array', false , 'category.name:'+category.name);
       
       const item_ids: string[] = [];
       if (existProcesses === 'exist'){
@@ -159,33 +159,34 @@ export default function (){
           })
         })
       }
-      if (existExtraLogic === 'exist'){
-        const existSumTargetItemQuantity = existAndTypeCheck(category.extra_logic, 'sum_target_item_quantity', 'object', false ,'category.name:'+category.name);
-        if(existSumTargetItemQuantity){
-          existAndTypeCheck(category.extra_logic.sum_target_item_quantity, 'prefix', 'string', true, 'category.name:'+category.name);
-          existAndTypeCheck(category.extra_logic.sum_target_item_quantity, 'suffix', 'string', true, 'category.name:'+category.name);
-          existAndTypeCheck(category.extra_logic.sum_target_item_quantity, 'target_item_ids', 'array', true, 'category.name:'+category.name);
-          category.extra_logic.sum_target_item_quantity.target_item_ids.forEach((target_item_id: string) => {
-            if(!item_ids.includes(target_item_id)){
-              log(['checkJson', 'このtarget_item_idは、このカテゴリー上に存在しないitem_idです', target_item_id])
+      if (extraComputeds === 'exist'){
+        category.extra_computeds.forEach((extra_computed: any) => {
+          existAndTypeCheck(extra_computed, 'description', 'string', false, 'category.name:'+category.name);
+          existAndTypeCheck(extra_computed, 'calc_result', 'string', true, 'category.name:'+category.name);
+          existAndTypeCheck(extra_computed, 'is_show', 'boolean', true, 'category.name:'+category.name);
+          existAndTypeCheck(extra_computed, 'trigger_item_ids', 'array', true, 'category.name:'+category.name);
+          extra_computed.trigger_item_ids.forEach((trigger_item_id: string) => {
+            if(!item_ids.includes(trigger_item_id)){
+              log(['checkJson', 'このtrigger_item_idは、このカテゴリー上に存在しないitem_idです', trigger_item_id])
               throw 1;
             }
           })
-        }
+          existAndTypeCheck(extra_computed, 'var_items', 'array', true, 'category.name:'+category.name);
+          extra_computed.var_items.forEach((var_item: any) => {
+            existAndTypeCheck(var_item, 'var_name', 'string', true, 'category.name:'+category.name);
+            existAndTypeCheck(var_item, 'item_id', 'string', true, 'category.name:'+category.name);
+            existAndTypeCheck(var_item, 'property', 'string', true, 'category.name:'+category.name);
+            if(!item_ids.includes(var_item.item_id)){
+              log(['checkJson', 'このvar_item.item_idは、このカテゴリー上に存在しないitem_idです', var_item.item_id])
+              throw 1;
+            }
+          })
+          existAndTypeCheck(extra_computed, 'calc_logic', 'string', true, 'category.name:'+category.name);
+          existAndTypeCheck(extra_computed, 'show_logic', 'string', true, 'category.name:'+category.name);
+        })
+
       }
-  
-  
-  
     });
-  
-  
-  
-    // item_idの重複チェック
-    // item_idを抜き出して、Setを使う
-  
-  
-  
-  
     log(['checkJson', 'end'])
   };
   return {

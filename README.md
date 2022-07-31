@@ -25,7 +25,7 @@ propsの設定値については[こちら](#props)を参照してください�
     - [Process](#process)
     - [Item](#item)
     - [Propagation](#propagation)
-    - [ExtraLogic](#extralogic)
+    - [ExtraComputed](#extracomputed)
 
 
 ## Dependency
@@ -246,10 +246,25 @@ const SETTINGS = {
     {
       "name": "String",
       "description": "String",
-      "extra_logic":
-      {
-
-      },
+      "extra_computeds":
+      [
+        {
+          "description": "String",
+          "calc_result": "String",
+          "is_show": "Boolean",
+          "trigger_item_ids":["String"],
+          "var_items":
+          [
+            {
+              "var_name": "String",
+              "item_id": "String",
+              "property": "String"
+            }
+          ],
+          "calc_logic": "String",
+          "show_logic": "String"
+        }
+      ],
       "propagation_groups":
       [
         {
@@ -344,7 +359,7 @@ Category配列の順番が、画面表示時の順番になります。
       "description": "",
       "propagation_groups":[],
       "processes": [],
-      "extra_logic": {}
+      "extra_computeds": []
     }
   ]
 }
@@ -356,7 +371,7 @@ Category配列の順番が、画面表示時の順番になります。
 |description| カテゴリーの端的な説明　※表示していません。 |false|String| |
 |propagation_groups| 伝播グループの配列 |false|[PropagationGroup]| |
 |processes| プロセスの配列 |true|[Process]| |
-|extra_logic| 追加ロジック |false|| |
+|extra_computeds| 追加のコンピューテッド(自動計算) |false|[ExtraComputed]| |
 
 
 ### Process
@@ -574,9 +589,9 @@ propagation.type
 
 
 
-### ExtraLogic
+### ExtraComputed
 
-特定の業界、商慣習でのみ活用できる機能を追加していく。
+画面上部の固定エリア上に、独自定義のラベルを設定します。
 
 
 ```json
@@ -584,36 +599,90 @@ propagation.type
   "categories":
   [
     {
-      "extra_logic":
-      {
-        "sum_target_item_quantity": "SumTargetItemQuantity"
-      }
-    }
-  ]
-}
-```
-
-|Key|Description|Required|Type|Use html|
-|-----|-----------|--------|----|:-:|
-|sum_target_item_quantity| 特定のアイテムの数の合算を画面上部に出すための設定 |false|[SumTargetItemQuantity]| |
-
-
-SumTargetItemQuantity
-
-```json
-{
-  "categories":
-  [
-    {
-      "extra_logic":
-      {
-        "sum_target_item_quantity": 
+      "extra_computeds": 
+      [
         {
-          "prefix": "パソコン", 
-          "suffix": "台", 
-          "target_item_ids":["20c2703f-3243-4284-b6af-4a003d60272d"]
+          "description": "インターネット接続設定の総発注数を表示する",
+          "calc_result": "",
+          "is_show": true,
+          "trigger_item_ids":["a1aff844-9f4f-4520-ac4d-40f593de9809", "7ea3f236-1b23-4ce5-b103-35416d84ff5e", "db7e538d-dc4b-4440-903e-a4f6fa19e302", "c2e972cf-0e4c-4336-b504-bb54e921265a"],
+          "var_items":
+          [
+            {
+              "var_name": "a",
+              "item_id": "a1aff844-9f4f-4520-ac4d-40f593de9809",
+              "property": "quantity"
+            },
+            {
+              "var_name": "b",
+              "item_id": "7ea3f236-1b23-4ce5-b103-35416d84ff5e",
+              "property": "quantity"
+            },
+            {
+              "var_name": "c",
+              "item_id": "db7e538d-dc4b-4440-903e-a4f6fa19e302",
+              "property": "quantity"
+            },
+            {
+              "var_name": "d",
+              "item_id": "c2e972cf-0e4c-4336-b504-bb54e921265a",
+              "property": "quantity"
+            }
+          ],
+          "calc_logic": "'合計' + (a + b + c + d) + '回線'",
+          "show_logic": "a + b + c + b > 0"
         }
-      }
+      ],
+    }
+  ]
+}
+```
+
+|Key|Description|Required|Type|Use html|
+|-----|-----------|--------|----|:-:|
+|description| 説明。 画面には現れません。メモ書き。 |false|String| |
+|calc_result| 画面表示の初期値。特に理由がなければ "" を設定しておく。後述のcalc_logicで変化する。|true|String| |
+|is_show| 画面表示するかを制御する。後述のshow_logicで変化する。|true|Boolean| |
+|trigger_item_ids| ここに指定したitemの数量が変化した時に発火する。|true|[String]| |
+|var_items| calc_logicとshow_logicで使う変数を設定する。 |true|[VarItem]| |
+|calc_logic| 結果がnumberかstringになるように記述してください。 |true|String| |
+|show_logic| 結果がbooleanになるように記述してください。 |true|String| |
+
+VarItem
+
+```json
+{
+  "categories":
+  [
+    {
+      "extra_computeds": 
+      [
+        {
+          "var_items":
+          [
+            {
+              "var_name": "a",
+              "item_id": "a1aff844-9f4f-4520-ac4d-40f593de9809",
+              "property": "quantity"
+            },
+            {
+              "var_name": "b",
+              "item_id": "7ea3f236-1b23-4ce5-b103-35416d84ff5e",
+              "property": "quantity"
+            },
+            {
+              "var_name": "c",
+              "item_id": "db7e538d-dc4b-4440-903e-a4f6fa19e302",
+              "property": "quantity"
+            },
+            {
+              "var_name": "d",
+              "item_id": "c2e972cf-0e4c-4336-b504-bb54e921265a",
+              "property": "quantity"
+            }
+          ],
+        }
+      ],
     }
   ]
 }
@@ -623,9 +692,9 @@ SumTargetItemQuantity
 
 |Key|Description|Required|Type|Use html|
 |-----|-----------|--------|----|:-:|
-|prefix| 接頭辞 |false|String| |
-|suffix| 接尾辞 |false|String| |
-|target_item_ids| 合算対象のアイテム |false|[String]| |
+|var_name| 接頭辞 |true|String| |
+|item_id| 接尾辞 |true|String| |
+|property| Itemの各キーを設定してください。quantity / cost 等 |true|String| |
 
 
 
